@@ -1,5 +1,6 @@
 package ru.vallball.transport01;
 
+
 public class Passenger extends Vehicle{
 	
 	private int Capacity;
