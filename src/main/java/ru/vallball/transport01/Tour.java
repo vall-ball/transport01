@@ -1,6 +1,8 @@
 package ru.vallball.transport01;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "tours")
 public class Tour {
@@ -21,9 +26,13 @@ public class Tour {
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name = "bus_id")
+	@JsonBackReference
+	
 	private Bus bus;
 	@NotNull
-	private LocalDateTime time;
+	private LocalDate date;
+	@NotNull
+	private LocalTime time;
 	@NotNull
 	private double distance;
 	@NotNull
@@ -51,11 +60,20 @@ public class Tour {
 		this.bus = bus;
 	}
 
-	public LocalDateTime getTime() {
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public LocalTime getTime() {
 		return time;
 	}
 
-	public void setTime(LocalDateTime time) {
+	public void setTime(LocalTime time) {
 		this.time = time;
 	}
 

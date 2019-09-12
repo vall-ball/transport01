@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
@@ -18,6 +20,8 @@ public class Bus{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull(message = "Please provide a capacity")
+	@Digits(fraction = 0, integer = 3)
 	private int capacity;
 
 	public int getCapacity() {

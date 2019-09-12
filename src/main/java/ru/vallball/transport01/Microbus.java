@@ -7,6 +7,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @DiscriminatorValue("microbus")
 public class Microbus extends Bus{
@@ -16,12 +19,14 @@ public class Microbus extends Bus{
 	        cascade = CascadeType.ALL,
 	        orphanRemoval = true
 	    )
+	@JsonManagedReference
 	private List<Tour> tours;
 	@OneToMany(
 	        mappedBy = "bus",
 	        cascade = CascadeType.ALL,
 	        orphanRemoval = true
 	    )
+
 	private List<TourInsideCity> insideTours;
 	
 	public List<Tour> getTours() {
