@@ -84,4 +84,16 @@ public class TourRestController {
 		return new ResponseEntity<>("Bus is deleted successfully", HttpStatus.ACCEPTED);
 	}
 	
+	@GetMapping("/profit")
+	public ResponseEntity<Object> profit() {
+		List<Tour> tours = tourRepository.findAll();
+		double priceForKm = 5;
+		double priceForSeat = 200;
+		double profit = 0;
+		for (Tour t : tours) {
+			profit = profit + (t.getDistance()*priceForKm + priceForSeat) * t.getPassengers();
+		}
+		return new ResponseEntity<>("Your profit is " + profit + " rub", HttpStatus.ACCEPTED);
+	}
+	
 }
